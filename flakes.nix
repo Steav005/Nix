@@ -12,22 +12,22 @@
     let
       lib = nixpkgs.lib;
       machines = {
-        "neesama" = {
-            address = "10.0.0.1";
-            arch = "x86_64-linux";
-        };
-        "imouto" = {
+        #"neesama" = {
+        #    address = "10.0.0.1";
+        #    arch = "x86_64-linux";
+        #};
+        "last-order" = {
             address = "10.0.0.2";
             arch = "x86_64-linux";
         };
-        "weebpi" = {
-            address = "10.3.0.0";
-            arch = "aarch64-linux";
-        };
-        "tenshi" = {
-            address = "10.4.0.0";
-            arch = "x86_64-linux";
-        };
+        #"index" = {
+        #    address = "10.3.0.0";
+        #    arch = "aarch64-linux";
+        #};
+        #"tenshi" = {
+        #    address = "10.4.0.0";
+        #    arch = "x86_64-linux";
+        #};
       };
     in {
       nixosConfigurations = lib.mapAttrs (hostname: info:
