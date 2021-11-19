@@ -1,5 +1,4 @@
 { config, lib, pkgs, modulesPath, inputs, ... }:
-
 {
   imports =
     [
@@ -26,13 +25,22 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelPackages = pkgs.unstable.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Graphics
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport32Bit = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  #hardware.opengl.enable = true;
+  #hardware.opengl.driSupport32Bit = true;
+  #hardware.nvidia.package = pkgs.unstable.linuxKernel.packages.linux_zen.nvidia_x11;
+  hardware.nvidia.modesetting.enable = true;
+  services.xserver = {
+#    videoDrivers = [ "nvidia" ];
+    dpi = 160;
+  };
+#  hardware.nvidia.prime = {
+#    sync.enable = true;
+#    intelBusId = "PCI:0:2:0";
+#    nvidiaBusId = "PCI:1:0:0";
+#  };
 
   networking.hostName = "last-order"; # Define your hostname.
 
@@ -50,7 +58,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.nvidiaPackages.beta ];
+  #boot.extraModulePackages = [ pkgs.unstable.linuxKernel.packages.linux_zen.nvidia_x11 ];
 
   fileSystems."/" =
     {
