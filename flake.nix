@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-21.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     my-flakes.url = "github:steav005/flakes";
     home-manager.url = "github:nix-community/home-manager/release-21.05";
@@ -9,7 +10,7 @@
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nur, my-flakes, deploy-rs, home-manager }@inputs :
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-unstable, nur, my-flakes, deploy-rs, home-manager }@inputs :
     let
       lib = nixpkgs.lib;
       machines = {
@@ -41,7 +42,7 @@
               {
                 nixpkgs.overlays = [
                   (self: super: {
-                    unstable = import "${nixpkgs}" {
+                    unstable = import "${nixpkgs-unstable}" {
                       inherit system;
                       config = super.config;
                     };
