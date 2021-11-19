@@ -16,7 +16,6 @@
     glibc
     glib
     pkgconfig
-    pkgs.emacsGcc # Installs Emacs 28 + native-comp
 
     # Jetbrains
     jetbrains.rider
@@ -30,7 +29,7 @@
         ms-python.python
         ms-azuretools.vscode-docker
 
-        bbenoist.nix
+        #bbenoist.nix
         jnoortheen.nix-ide
         matklad.rust-analyzer
         serayuzgur.crates

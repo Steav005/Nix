@@ -39,7 +39,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "sudo" ];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINyEqb7UJHiNXQxcwBr/fZhlar0q72P4qxW+1zVGKs2c admin"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMNHbFYdDk7Ii7OsowH3Dn+dkEHAhJtqaxR6Q7V41OEX autumnal@last-order"
     ];
   };
 }

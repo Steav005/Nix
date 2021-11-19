@@ -13,6 +13,12 @@
       ../modules/software-common.nix
       ../modules/nix-flakes.nix
       ../modules/service-openssh.nix
+      ../modules/software-dev-common.nix
+      ../modules/software-dev-c.nix
+      ../modules/software-dev-python.nix
+      ../modules/software-dev-rust.nix
+      ../modules/software-games.nix
+      ../modules/software-neovim.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
