@@ -68,6 +68,18 @@
     fsType = "vfat";
   };
 
+  fileSystems."/media/index" = {
+    device = "index:/media";
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=300" ];
+  };
+
+  fileSystems."/media/tenshi" = {
+    device = "tenshi:/";
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=300" ];
+  };
+
   swapDevices =
     [{ device = "/dev/disk/by-uuid/0cd9369b-0299-4272-ae5c-e61d78ca5164"; }];
 

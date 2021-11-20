@@ -22,6 +22,13 @@
     joinNetworks = [ "565799d8f6299e0c" ];
   };
 
+  networking.extraHosts = ''
+    10.0.0.1 neesama
+    10.0.0.2 last-order
+    10.3.0.0 tenshi
+    10.4.0.0 index
+  '';
+
   # enable openssh
   environment.systemPackages = with pkgs; [ openssh ];
   services.openssh = {

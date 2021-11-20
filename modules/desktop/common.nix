@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    alacritty
+    unstable.alacritty
 
     # Filemanager
     xfce.thunar

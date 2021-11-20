@@ -56,6 +56,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "old";
             }
             { networking.hostName = hostname; }
             (./machines + "/${hostname}.nix")
@@ -63,6 +64,7 @@
           specialArgs = {
             inherit inputs;
             inherit nur;
+            inherit info;
             inherit nixpkgs;
             inherit home-manager;
           };
