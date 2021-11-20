@@ -2,6 +2,7 @@
 
 {
   boot.cleanTmpDir = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   #boot.kernel.sysctl = {
   #  "vm.oom-kill" = 0;
   #  "vm.overcommit_memory" = 2;
@@ -11,10 +12,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
-  console = {
-    font = "RobotoMono Nerd Font";
-    keyMap = "de";
-  };
 
   nix.trustedUsers = [ "admin" ];
   nixpkgs.config.allowUnfree = true;
@@ -22,9 +19,14 @@
   # enable zerotier virtual switch
   services.zerotierone = {
     enable = true;
-    joinNetworks = [
-      "565799d8f6299e0c"
-    ];
+    joinNetworks = [ "565799d8f6299e0c" ];
+  };
+
+  # enable openssh
+  environment.systemPackages = with pkgs; [ openssh ];
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = false;
   };
 
   security.sudo.extraRules = [{

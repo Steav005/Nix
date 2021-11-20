@@ -115,17 +115,17 @@
     let
 
       polybar = pkgs.polybar.override { i3Support = true; };
-    in
-    [
+    in [
       # Pantheon theming
       pantheon.elementary-gtk-theme
       pantheon.elementary-icon-theme
       pantheon.elementary-sound-theme
       pantheon.elementary-wallpapers
 
-      # Dunst alternative
-      inputs.wired-notify.packages.x86_64-linux.wired
-      notify-desktop
+      # Dunst alternative (Ill use dunst afterall)
+      # inputs.wired-notify.packages.x86_64-linux.wired
+      # notify-desktop
+      dunst
 
       # i3 polybar
       polybar

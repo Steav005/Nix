@@ -16,7 +16,6 @@
     skim
     ripgrep
     du-dust
-    unstable.helvum
 
     # archivers & compression algos
     bzip2

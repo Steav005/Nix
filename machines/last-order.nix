@@ -1,25 +1,22 @@
-{ config, lib, pkgs, modulesPath, inputs, ... }:
-{
-  imports =
-    [
-      # Include the results of the hardware scan.
-      #./hardware-configuration.nix
-      ../common.nix
-      ../modules/desktop-common.nix
-      ../modules/desktop-gnome.nix
-      ../modules/fish.nix
-      ../modules/user-autumnal.nix
-      ../modules/software-common.nix
-      ../modules/nix-flakes.nix
-      ../modules/service-openssh.nix
-      ../modules/software-dev-common.nix
-      ../modules/software-dev-c.nix
-      ../modules/software-dev-python.nix
-      ../modules/software-dev-rust.nix
-      ../modules/software-games.nix
-      ../modules/software-neovim.nix
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+{ config, lib, pkgs, modulesPath, inputs, ... }: {
+  imports = [
+    # Include the results of the hardware scan.
+    #./hardware-configuration.nix
+    ../common.nix
+    ../modules/desktop/common.nix
+    ../modules/desktop/gnome.nix
+    ../modules/fish.nix
+    ../users/autumnal.nix
+    ../modules/software-common.nix
+    ../modules/nix-flakes.nix
+    ../modules/software-dev-common.nix
+    ../modules/software-dev-c.nix
+    ../modules/software-dev-python.nix
+    ../modules/software-dev-rust.nix
+    ../modules/software-games.nix
+    ../modules/software-neovim.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -28,19 +25,19 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Graphics
-  #hardware.opengl.enable = true;
-  #hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
   #hardware.nvidia.package = pkgs.unstable.linuxKernel.packages.linux_zen.nvidia_x11;
-  hardware.nvidia.modesetting.enable = true;
+  #hardware.nvidia.modesetting.enable = true;
   services.xserver = {
-#    videoDrivers = [ "nvidia" ];
+    #  videoDrivers = [ "nvidia" ];
     dpi = 160;
   };
-#  hardware.nvidia.prime = {
-#    sync.enable = true;
-#    intelBusId = "PCI:0:2:0";
-#    nvidiaBusId = "PCI:1:0:0";
-#  };
+  #hardware.nvidia.prime = {
+  #  sync.enable = true;
+  #  intelBusId = "PCI:0:2:0";
+  #  nvidiaBusId = "PCI:1:0:0";
+  #};
 
   networking.hostName = "last-order"; # Define your hostname.
 
@@ -55,22 +52,21 @@
 
   ### HARDWARE CONFIGURATION
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
-  #boot.extraModulePackages = [ pkgs.unstable.linuxKernel.packages.linux_zen.nvidia_x11 ];
+  #boot.extraModulePackages = [ config.boot.kernelPackages.nvidiaPackages.stable ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/5cabec94-b823-4032-aed1-2677c7c87bd5";
-      fsType = "btrfs";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/5cabec94-b823-4032-aed1-2677c7c87bd5";
+    fsType = "btrfs";
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/705E-7CED";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/705E-7CED";
+    fsType = "vfat";
+  };
 
   swapDevices =
     [{ device = "/dev/disk/by-uuid/0cd9369b-0299-4272-ae5c-e61d78ca5164"; }];
