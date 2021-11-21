@@ -26,10 +26,10 @@
           address = "10.0.0.2";
           arch = "x86_64-linux";
         };
-        #"index" = {
-        #    address = "10.3.0.0";
-        #    arch = "aarch64-linux";
-        #};
+        "index" = {
+            address = "10.3.0.0";
+            arch = "aarch64-linux";
+        };
         #"tenshi" = {
         #    address = "10.4.0.0";
         #    arch = "x86_64-linux";
