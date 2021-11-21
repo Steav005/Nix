@@ -14,15 +14,15 @@
   };
 
   #environment.systemPackages = [
-    # Needed for fcitx theme
-    #inputs.my-flakes.packages."${info.arch}".fcitx5-nord
+  # Needed for fcitx theme
+  #inputs.my-flakes.packages."${info.arch}".fcitx5-nord
   #];
-  
 
-  home-manager.users.autumnal = { 
-    imports = [./autumnal/home.nix];
-    
+  home-manager.users.autumnal = {
+    imports = [ ./autumnal/home.nix ];
+
     # TODO somehow move this into users/autumnal/home.nix
-    home.file.".local/share/fcitx5/themes/".source = "${inputs.my-flakes.packages."${info.arch}".fcitx5-nord}";
-    };
+    home.file.".local/share/fcitx5/themes/".source =
+      "${inputs.my-flakes.packages."${info.arch}".fcitx5-nord}";
+  };
 }

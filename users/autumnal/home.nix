@@ -15,7 +15,7 @@
       # Fcitx manages to write a new profile file before home manager comes in
       # So we overwrite the file by force
       force = true;
-      };
+    };
 
     "cmus/autosave".source = ./config/cmus/autosave;
     "cmus/cmus-notify".source = ./config/cmus/cmus-notify;
@@ -23,6 +23,8 @@
     "cmus/notify.cfg".source = ./config/cmus/notify.cfg;
 
     "dunst/dunstrc".source = ./config/dunst/dunstrc;
+
+    "gtk-3.0/bookmarks".source = ./config/gtk-3.0/bookmarks;
   };
-  
+
 }

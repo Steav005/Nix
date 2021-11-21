@@ -12,6 +12,7 @@
     nix-index
     nix-review
     nixfmt
+    nixdoc
     perf-tools
     glibc
     glib

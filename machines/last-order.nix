@@ -28,7 +28,7 @@
   hardware.opengl.enable = true;
   hardware.opengl.driSupport32Bit = true;
   #hardware.nvidia.package = pkgs.unstable.linuxKernel.packages.linux_zen.nvidia_x11;
-  #hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.modesetting.enable = true;
   services.xserver = {
     #  videoDrivers = [ "nvidia" ];
     dpi = 160;
@@ -68,16 +68,31 @@
     fsType = "vfat";
   };
 
-  fileSystems."/media/index" = {
+  fileSystems."/net/index" = {
     device = "index:/media";
     fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=300" ];
+    noCheck = true;
+    options = [
+      "noauto"
+      "_netdev"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=60"
+      "x-systemd.device-timeout=4s"
+      "x-systemd.mount-timeout=4s"
+    ];
   };
 
-  fileSystems."/media/tenshi" = {
+  fileSystems."/net/tenshi" = {
     device = "tenshi:/";
     fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=300" ];
+    options = [
+      "noauto"
+      "_netdev"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=60"
+      "x-systemd.device-timeout=4s"
+      "x-systemd.mount-timeout=4s"
+    ];
   };
 
   swapDevices =

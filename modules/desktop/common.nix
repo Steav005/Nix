@@ -157,6 +157,10 @@
     '';
   };
 
+  # Enable gvfs
+  services.gvfs.enable = true;
+  environment.variables.GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
+
   # Display configuration
   services.autorandr.enable = true;
 }
