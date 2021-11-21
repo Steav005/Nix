@@ -1,4 +1,4 @@
-{ lib, pkgs, overlay-unstable, inputs, ... }:
+{ lib, pkgs, overlay-unstable, inputs, info, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -21,12 +21,10 @@
 
     # Themes
     lxappearance
-    dracula-theme
     papirus-icon-theme
     nordic
     bibata-cursors
-    bibata-extra-cursors
-    bibata-cursors-translucent
+    inputs.my-flakes.packages."${info.arch}".bibata
 
     # nitrogen
     gparted
