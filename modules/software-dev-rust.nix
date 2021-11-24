@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     #cargo
     #rustc
+    rustup
     cargo-asm
     cargo-bloat
     cargo-expand

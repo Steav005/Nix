@@ -15,6 +15,7 @@
     ../modules/software-dev-rust.nix
     ../modules/software-games.nix
     ../modules/software-neovim.nix
+    ../modules/network-wifi.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
@@ -23,6 +24,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Graphics
   hardware.opengl.enable = true;

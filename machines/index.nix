@@ -4,8 +4,8 @@
     ../modules/fish.nix
     ../users/autumnal.nix
     ../modules/nix-flakes.nix
-    ../modules/software-common.nix
-    ../modules/software-neovim.nix
+    #../modules/software-common.nix
+    #../modules/software-neovim.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
@@ -18,16 +18,16 @@
 
   networking = {
     hostName = "index";
-    interfaces.eth0.ipv4.addresses = [ {
-        address = "192.168.178.2";
-        prefixLength = 24;
-    } ];
+    interfaces.eth0.ipv4.addresses = [{
+      address = "192.168.178.2";
+      prefixLength = 24;
+    }];
     defaultGateway = "192.168.178.1";
     nameservers = [ "1.1.1.1" ];
   };
 
   powerManagement.cpuFreqGovernor = "ondemand";
-    
+
   # File systems configuration for using the installer's partition layout
   fileSystems = {
     "/" = {

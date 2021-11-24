@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, agenix, info, ... }:
 
 {
   boot.cleanTmpDir = true;
@@ -14,7 +14,10 @@
   i18n.defaultLocale = "en_GB.UTF-8";
 
   nix.trustedUsers = [ "admin" ];
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnsupportedSystem = true;
+  };
 
   # enable zerotier virtual switch
   services.zerotierone = {
@@ -30,7 +33,8 @@
   '';
 
   # enable openssh
-  environment.systemPackages = with pkgs; [ openssh ];
+  environment.systemPackages =
+    [ pkgs.openssh agenix.defaultPackage."${info.arch}" ];
   services.openssh = {
     enable = true;
     passwordAuthentication = false;

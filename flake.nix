@@ -10,11 +10,12 @@
     };
 
     deploy-rs.url = "github:serokell/deploy-rs";
-    deploy-rs.inputs.nixpkgs.follows = "nixpkgs-stable";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-unstable, nur, my-flakes
-    , deploy-rs, home-manager }@inputs:
+    , deploy-rs, home-manager, agenix }@inputs:
     let
       lib = nixpkgs.lib;
       machines = {
@@ -27,8 +28,8 @@
           arch = "x86_64-linux";
         };
         "index" = {
-            address = "10.3.0.0";
-            arch = "aarch64-linux";
+          address = "10.3.0.0";
+          arch = "aarch64-linux";
         };
         #"tenshi" = {
         #    address = "10.4.0.0";
@@ -60,6 +61,7 @@
             }
             { networking.hostName = hostname; }
             (./machines + "/${hostname}.nix")
+            (agenix.nixosModules.age)
           ];
           specialArgs = {
             inherit inputs;
@@ -67,6 +69,7 @@
             inherit info;
             inherit nixpkgs;
             inherit home-manager;
+            inherit agenix;
           };
 
         }) machines;
@@ -77,7 +80,7 @@
         profiles = {
           system = {
             sshUser = "admin";
-            path = deploy-rs.lib."${info.arch}".activate.nixos
+            path = deploy-rs.lib.${info.arch}.activate.nixos
               self.nixosConfigurations."${hostname}";
             user = "root";
           };

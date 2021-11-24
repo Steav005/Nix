@@ -13,6 +13,9 @@
     ];
   };
 
+  # Age ssh encryption location
+  age.sshKeyPaths = [ "/home/autumnal/.ssh//id_ed25519" ];
+
   #environment.systemPackages = [
   # Needed for fcitx theme
   #inputs.my-flakes.packages."${info.arch}".fcitx5-nord
