@@ -1,6 +1,4 @@
 { config, pkgs, ... }: {
-  imports = [ ./gnome.nix ];
-
   home.file.".face".source = ./profilepicture;
 
   xdg.configFile = {

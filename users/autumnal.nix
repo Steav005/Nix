@@ -1,4 +1,10 @@
-{ config, pkgs, inputs, info, ... }: {
+{ config, pkgs, inputs, info, ... }:
+let
+  gnome-config = if config.services.xserver.displayManager.gdm.enable then
+    [ ./autumnal/gnome.nix ]
+  else
+    [ ];
+in {
 
   users.users.autumnal = {
     isNormalUser = true;
@@ -23,7 +29,7 @@
   #];
 
   home-manager.users.autumnal = {
-    imports = [ ./autumnal/home.nix ];
+    imports = [ ./autumnal/home.nix ] ++ gnome-config;
 
     # TODO somehow move this into users/autumnal/home.nix
     home.file.".local/share/fcitx5/themes/".source =
