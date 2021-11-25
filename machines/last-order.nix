@@ -23,17 +23,20 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.unstable.linuxPackages_xanmod;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Graphics
   hardware.opengl.enable = true;
   hardware.opengl.driSupport32Bit = true;
-  #hardware.nvidia.package = pkgs.unstable.linuxKernel.packages.linux_zen.nvidia_x11;
+  hardware.nvidia.package =
+    pkgs.unstable.linuxKernel.packages.linux_xanmod.nvidia_x11;
   hardware.nvidia.modesetting.enable = true;
+  #hardware.nvidia.nvidiaPersistenced = true;
   services.xserver = {
-    #  videoDrivers = [ "nvidia" ];
+    #exportConfiguration = true;
+    #videoDrivers = [ "modeset" "nvidia" ];
     dpi = 160;
   };
   #hardware.nvidia.prime = {
