@@ -3,7 +3,6 @@
     # Include the results of the hardware scan.
     #./hardware-configuration.nix
     ../common.nix
-    ../modules/desktop/common.nix
     ../modules/desktop/gnome.nix
     ../modules/fish.nix
     ../users/autumnal.nix

@@ -57,6 +57,7 @@
 
     # Multimedia
     mpv
+    syncplay
     spotify
     strawberry
     pavucontrol
@@ -96,6 +97,10 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+
+    config.pipewire = {
+      "context.properties" = { "default.clock.rate" = 192000; };
+    };
   };
 
   # Fonts

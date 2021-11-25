@@ -1,6 +1,6 @@
 { config, pkgs, inputs, lib, nixpkgs, ... }: {
 
-  imports = [ ./desktop-common.nix ];
+  imports = [ ./common.nix ];
 
   #  nixpkgs.overlays = [
   #    (final: previous: {
@@ -25,8 +25,8 @@
 
     enable = true;
     backend = "xrender";
-    vSync = true;
-    refreshRate = 280;
+    vSync = false;
+    refreshRate = 240;
     shadow = true;
     #shadowOffsets = [ (-12) (-6) ];
     shadowOffsets = [ (-5) (-5) ];
@@ -64,6 +64,7 @@
 
       # Shadow
       "shadow-radius" = 20;
+      "shadow-ignore-shape" = true;
 
       #Blur
       #      "blur-method" = "dual_kawase";
@@ -73,7 +74,18 @@
       "blur-background-exclude" =
         [ "window_type = 'desktop'" "_GTK_FRAME_EXTENTS@:c" ];
     };
-    opacityRules = [ "90:class_g    *?= 'Alacritty'" ];
+    opacityRules = [
+      "0:_NET_WM_STATE@[0]:32a *= '_NET_WM_STATE_HIDDEN'"
+      "0:_NET_WM_STATE@[1]:32a *= '_NET_WM_STATE_HIDDEN'"
+      "0:_NET_WM_STATE@[2]:32a *= '_NET_WM_STATE_HIDDEN'"
+      "0:_NET_WM_STATE@[3]:32a *= '_NET_WM_STATE_HIDDEN'"
+      "0:_NET_WM_STATE@[4]:32a *= '_NET_WM_STATE_HIDDEN'"
+      "0:_NET_WM_STATE@[5]:32a *= '_NET_WM_STATE_HIDDEN'"
+      "0:_NET_WM_STATE@[6]:32a *= '_NET_WM_STATE_HIDDEN'"
+      "0:_NET_WM_STATE@[7]:32a *= '_NET_WM_STATE_HIDDEN'"
+      "0:_NET_WM_STATE@[8]:32a *= '_NET_WM_STATE_HIDDEN'"
+      "0:_NET_WM_STATE@[9]:32a *= '_NET_WM_STATE_HIDDEN'"
+    ];
   };
 
   services.xserver = {
@@ -96,18 +108,23 @@
         i3lock # default i3 screen locker
         i3blocks # if you are planning on using i3blocks over i3status
       ];
-      extraSessionCommands = ''
-        ${pkgs.autorandr}/bin/autorandr --change --skip-options gamma,crtc,rotate,reflect,rate
-      '';
+      #extraSessionCommands = ''
+      #  ${pkgs.autorandr}/bin/autorandr --change --skip-options gamma,crtc,rotate,reflect,rate
+      #'';
     };
 
+    screenSection = ''
+      Option         "nvidiaXineramaInfoOrder" "DFP-5"
+      Option         "metamodes" "DP-2: 1920x1080_240 +2560+0, DP-0: 2560x1440 +0+0"
+    '';
+
     # Auto lock
-    xautolock = {
-      enable = true;
-      time = 45;
-      locker =
-        "${pkgs.betterlockscreen}/bin/betterlockscreen -l blur --display 1";
-    };
+    #xautolock = {
+    #  enable = true;
+    #  time = 45;
+    #  locker =
+    #    "${pkgs.betterlockscreen}/bin/betterlockscreen -l blur --display 1";
+    #};
 
   };
 
@@ -134,7 +151,7 @@
       rofi
 
       # Lockscreen
-      betterlockscreen
+      unstable.betterlockscreen
       feh
     ];
 

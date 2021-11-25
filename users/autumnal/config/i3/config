@@ -343,7 +343,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id betterlockscreen -w
 
 # Force Usage of Steinberg Input
-exec_always --no-startup-id pactl set-default-source alsa_input.usb-Yamaha_Corporation_Steinberg_UR12-00.analog-stereo
+#exec_always --no-startup-id pactl set-default-source alsa_input.usb-Yamaha_Corporation_Steinberg_UR12-00.analog-stereo
 
 # Create left workspace
 exec --no-startup-id ~/.config/i3/build_workspace_7.sh

@@ -6,13 +6,14 @@
 {
   imports = [
     ../common.nix
-    ../modules/desktop/common.nix
-    ../modules/desktop/gnome.nix
+    #../modules/desktop/gnome.nix
+    ../modules/desktop/i3.nix
     ../modules/fish.nix
     ../users/autumnal.nix
     ../modules/software-common.nix
     ../modules/nix-flakes.nix
     ../modules/software-dev-common.nix
+    ../modules/software-games.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
@@ -43,6 +44,43 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/994C-6ECB";
     fsType = "vfat";
+  };
+
+  fileSystems."/media/artix" = {
+    device = "/dev/disk/by-uuid/9f73350b-3d9b-4b27-a7b8-1405384db490";
+    fsType = "btrfs";
+  };
+
+  fileSystems."/media/ssddata" = {
+    device = "/dev/disk/by-uuid/81c6fec5-b8e1-4d7a-b68e-39b16dcc2f86";
+    fsType = "btrfs";
+  };
+
+  fileSystems."/net/index" = {
+    device = "index:/media";
+    fsType = "nfs";
+    noCheck = true;
+    options = [
+      "noauto"
+      "_netdev"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=60"
+      "x-systemd.device-timeout=4s"
+      "x-systemd.mount-timeout=4s"
+    ];
+  };
+
+  fileSystems."/net/tenshi" = {
+    device = "tenshi:/";
+    fsType = "nfs";
+    options = [
+      "noauto"
+      "_netdev"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=60"
+      "x-systemd.device-timeout=4s"
+      "x-systemd.mount-timeout=4s"
+    ];
   };
 
   swapDevices = [ ];

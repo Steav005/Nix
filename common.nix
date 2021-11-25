@@ -32,6 +32,12 @@
     10.4.0.0 index
   '';
 
+  location = {
+    provider = "manual";
+    latitude = 51.8;
+    longitude = 10.3;
+  };
+
   # enable openssh
   environment.systemPackages =
     [ pkgs.openssh agenix.defaultPackage."${info.arch}" ];
@@ -49,6 +55,7 @@
   }];
 
   users.users.admin = {
+    uid = 1001;
     isNormalUser = true;
     extraGroups = [ "wheel" "sudo" ];
     openssh.authorizedKeys.keys = [

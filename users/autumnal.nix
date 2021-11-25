@@ -4,9 +4,14 @@ let
     [ ./autumnal/gnome.nix ]
   else
     [ ];
+  i3-config = if config.services.xserver.windowManager.i3.enable then
+    [ ./autumnal/i3.nix ]
+  else
+    [ ];
 in {
 
   users.users.autumnal = {
+    uid = 1000;
     isNormalUser = true;
     extraGroups = [ "wheel" "disk" "audio" "video" "networkmanager" "docker" ];
     shell = pkgs.fish;
@@ -29,7 +34,7 @@ in {
   #];
 
   home-manager.users.autumnal = {
-    imports = [ ./autumnal/home.nix ] ++ gnome-config;
+    imports = [ ./autumnal/home.nix ] ++ gnome-config ++ i3-config;
 
     # TODO somehow move this into users/autumnal/home.nix
     home.file.".local/share/fcitx5/themes/".source =

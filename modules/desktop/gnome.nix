@@ -1,4 +1,6 @@
 { pkgs, inputs, ... }: {
+  imports = [ ./common.nix ];
+
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm = {
     enable = true;

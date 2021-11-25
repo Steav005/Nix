@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, info, ... }: {
 
   environment.systemPackages = with pkgs; [
     xow # XBox Wirless dongle support
@@ -25,11 +25,11 @@
   ];
 
   #Xow patch libusb
-  # nixpkgs.config.packageOverrides = pkgs: {
-  #   xow = pkgs.xow.overrideAttrs (orig: {
-  #     buildInputs = [ inputs.my-flakes.packages.x86_64-linux.libusb ];
-  #   });
-  # };
+  #nixpkgs.config.packageOverrides = pkgs: {
+  #  xow = pkgs.xow.overrideAttrs (orig: {
+  #    buildInputs = [ inputs.my-flakes.packages."${info.arch}".libusb ];
+  #  });
+  #};
 
   # Steam
   programs.steam.enable = true;
