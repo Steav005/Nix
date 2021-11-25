@@ -9,11 +9,11 @@
     #../modules/desktop/gnome.nix
     ../modules/desktop/i3.nix
     ../modules/fish.nix
-    ../users/autumnal.nix
-    ../modules/software-common.nix
     ../modules/nix-flakes.nix
-    ../modules/software-dev-common.nix
-    ../modules/software-games.nix
+    ../modules/software/common.nix
+    ../modules/software/dev-common.nix
+    ../modules/software/games.nix
+    ../users/autumnal.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 

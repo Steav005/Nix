@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [ ../modules/software-neovim.nix ];
   environment.systemPackages = with pkgs; [
     bottom
     calc

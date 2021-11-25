@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, info, ... }:
+{ config, pkgs, inputs, info, lib, ... }:
 let
   gnome-config = if config.services.xserver.displayManager.gdm.enable then
     [ ./autumnal/gnome.nix ]
@@ -26,12 +26,7 @@ in {
   };
 
   # Age ssh encryption location
-  age.sshKeyPaths = [ "/home/autumnal/.ssh//id_ed25519" ];
-
-  #environment.systemPackages = [
-  # Needed for fcitx theme
-  #inputs.my-flakes.packages."${info.arch}".fcitx5-nord
-  #];
+  age.sshKeyPaths = [ "/home/autumnal/.ssh/id_ed25519" ];
 
   home-manager.users.autumnal = {
     imports = [ ./autumnal/home.nix ] ++ gnome-config ++ i3-config;

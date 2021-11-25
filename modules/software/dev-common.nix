@@ -1,23 +1,6 @@
-{ config, pkgs, ... }:
-# Rust
-#dustypomerleau.rust-syntax
-#rust-lang.rust
-#TabNine.tabnine-vscode
-#serayuzgur.crates
-{
+{ config, pkgs, ... }: {
+  imports = [ ./dev-common-minimal.nix ];
   environment.systemPackages = with pkgs; [
-    gitAndTools.gitFull
-    gnumake
-    llvm
-    nix-index
-    nix-review
-    nixfmt
-    nixdoc
-    perf-tools
-    glibc
-    glib
-    pkgconfig
-
     # Jetbrains
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional

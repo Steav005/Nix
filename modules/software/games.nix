@@ -3,8 +3,6 @@
   environment.systemPackages = with pkgs; [
     xow # XBox Wirless dongle support
 
-    obs-studio # Streaming software
-
     lutris
 
     (retroarch.override {
@@ -25,11 +23,11 @@
   ];
 
   #Xow patch libusb
-  #nixpkgs.config.packageOverrides = pkgs: {
-  #  xow = pkgs.xow.overrideAttrs (orig: {
-  #    buildInputs = [ inputs.my-flakes.packages."${info.arch}".libusb ];
-  #  });
-  #};
+  nixpkgs.config.packageOverrides = pkgs: {
+    xow = pkgs.xow.overrideAttrs (orig: {
+      buildInputs = [ inputs.my-flakes.packages."${info.arch}".libusb ];
+    });
+  };
 
   # Steam
   programs.steam.enable = true;
