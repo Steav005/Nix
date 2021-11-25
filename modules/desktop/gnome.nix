@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, info, ... }: {
   imports = [ ./common.nix ];
 
   # Enable the GNOME Desktop Environment.
@@ -9,8 +9,6 @@
   };
   services.xserver.desktopManager.gnome.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    gnome.gnome-tweaks
-    gnome.dconf-editor
-  ];
+  environment.systemPackages =
+    [ pkgs.gnome.gnome-tweaks pkgs.gnome.dconf-editor ];
 }

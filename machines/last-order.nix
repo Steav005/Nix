@@ -103,7 +103,7 @@
   swapDevices =
     [{ device = "/dev/disk/by-uuid/0cd9369b-0299-4272-ae5c-e61d78ca5164"; }];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

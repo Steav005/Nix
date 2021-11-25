@@ -21,5 +21,16 @@
       document-font-name = "Roboto 11";
       monospace-font-name = "FiraCode Nerd Font Mono 10";
     };
+    #"org/gnome/settings-daemon/media-keys" = {
+    #  custom-keybindings = [
+    #    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/alacritty/"
+    #    #"/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+    #  ];
+    #  alacritty = {
+    #    binding = "<Super>Enter";
+    #    command = "alacritty";
+    #    name = "Alacritty";
+    #  };
+    #};
   };
 }

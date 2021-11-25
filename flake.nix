@@ -15,7 +15,7 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-unstable, nur, my-flakes
-    , deploy-rs, home-manager, agenix }@inputs:
+    , deploy-rs, home-manager, agenix, ... }@inputs:
     let
       lib = nixpkgs.lib;
       machines = {

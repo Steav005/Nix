@@ -4,6 +4,13 @@
     force = true;
   };
 
+  programs.git = {
+    enable = true;
+    userName = "autumnal";
+    userEmail = "friedrich122112@me.com";
+    aliases = { st = "status"; };
+  };
+
   xdg.configFile = {
     "alacritty" = {
       source = ./config/alacritty;
