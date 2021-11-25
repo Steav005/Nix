@@ -4,46 +4,46 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ 
-      ../common.nix
-      ../modules/desktop/common.nix
-      ../modules/desktop/gnome.nix
-      ../modules/fish.nix
-      ../users/autumnal.nix
-      ../modules/software-common.nix
-      ../modules/nix-flakes.nix
-      ../modules/software-dev-common.nix
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    ../common.nix
+    ../modules/desktop/common.nix
+    ../modules/desktop/gnome.nix
+    ../modules/fish.nix
+    ../users/autumnal.nix
+    ../modules/software-common.nix
+    ../modules/nix-flakes.nix
+    ../modules/software-dev-common.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
   boot.kernelPackages = pkgs.unstable.linuxPackages_xanmod;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  hardware.nvidia.package = pkgs.unstable.linuxKernel.packages.linux_xanmod.nvidia_x11_beta;
+  hardware.nvidia.package =
+    pkgs.unstable.linuxKernel.packages.linux_xanmod.nvidia_x11_beta;
   services.xserver.videoDrivers = [ "nvidia" ];
 
   networking.hostName = "neesama";
 
-
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/52ebffd7-c8dd-48f0-a9d1-88c01be0da4f";
-      fsType = "btrfs";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/52ebffd7-c8dd-48f0-a9d1-88c01be0da4f";
+    fsType = "btrfs";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/994C-6ECB";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/994C-6ECB";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 

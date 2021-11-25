@@ -19,9 +19,6 @@
     pkgconfig
 
     # Jetbrains
-    jetbrains.rider
-    jetbrains.clion
-    jetbrains.webstorm
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional
 

@@ -20,8 +20,8 @@
       lib = nixpkgs.lib;
       machines = {
         "neesama" = {
-            address = "10.0.0.1";
-            arch = "x86_64-linux";
+          address = "10.0.0.1";
+          arch = "x86_64-linux";
         };
         "last-order" = {
           address = "10.0.0.2";
