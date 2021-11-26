@@ -12,6 +12,7 @@
     ../modules/nix-flakes.nix
     ../modules/software/common.nix
     ../modules/software/dev-common.nix
+    ../modules/software/dev-python.nix
     ../modules/software/games.nix
     ../users/autumnal.nix
     (modulesPath + "/installer/scan/not-detected.nix")

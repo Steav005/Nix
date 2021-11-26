@@ -346,4 +346,4 @@ exec_always --no-startup-id betterlockscreen -w
 #exec_always --no-startup-id pactl set-default-source alsa_input.usb-Yamaha_Corporation_Steinberg_UR12-00.analog-stereo
 
 # Create left workspace
-exec --no-startup-id ~/.config/i3/build_workspace_7.sh
+exec --no-startup-id ~/.config/i3/build_workspace_neesama.sh

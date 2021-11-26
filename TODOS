@@ -1,4 +1,8 @@
 jetbrains plugins?
-git config
 Split modules into lite versions
-dunst in i3 (external module?)
+i3:
+    dunst as external module?
+    Spotify stops in i3
+    Theme (Cursor, Nord, Icons)
+    Missing Fonts
+    Move python packages 

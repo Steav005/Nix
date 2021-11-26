@@ -150,9 +150,10 @@
       pywal
       rofi
 
-      # Polybar dependency
-      python39Packages.dbus-python
-      python39Packages.pygobject3
+      # Polybar dependency 
+      # TODO move here from python dev
+      #python39Packages.dbus-python
+      #python39Packages.pygobject3
 
       # Lockscreen
       unstable.betterlockscreen
