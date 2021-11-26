@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./dev-c.nix ];
+
   environment.systemPackages = with pkgs; [
     #cargo
     #rustc

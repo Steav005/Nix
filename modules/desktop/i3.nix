@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, nixpkgs, ... }: {
+{ config, pkgs, inputs, lib, nixpkgs, info, ... }: {
 
   imports = [ ./common.nix ];
 
@@ -92,7 +92,22 @@
     displayManager = {
       defaultSession = "none+i3";
       lightdm.enable = true;
-      lightdm.greeters.pantheon.enable = true;
+      lightdm.greeters.gtk = {
+        enable = true;
+        theme = {
+          name = "Nordic";
+          package = pkgs.nordic;
+        };
+        iconTheme = {
+          name = "Papirus-Dark";
+          package = pkgs.papirus-icon-theme;
+        };
+        cursorTheme = {
+          name = "Bibata-Original-Classic";
+          package = inputs.my-flakes.packages."${info.arch}".bibata;
+          size = 12;
+        };
+      };
       autoLogin = {
         enable = true;
         user = "autumnal";

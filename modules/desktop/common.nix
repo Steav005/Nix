@@ -50,10 +50,11 @@
     qalculate-gtk
 
     # Communication
-    discord-canary
+    unstable.discord-canary
     element-desktop
-    mattermost
+    mattermost-desktop
     tdesktop
+    unstable.rocketchat-desktop
 
     # Multimedia
     mpv
@@ -116,7 +117,6 @@
     proggyfonts
     hanazono
     ipafont
-    nerdfonts
     material-icons
     siji
     uw-ttyp0
@@ -125,10 +125,14 @@
     material-design-icons
     source-han-code-jp
     source-code-pro
-    roboto
     jetbrains-mono
     iosevka
+
+    # I3 Polybar relevant
+    nerdfonts
+    roboto
     sarasa-gothic
+    font-awesome
   ];
 
   # Fallback Fonts

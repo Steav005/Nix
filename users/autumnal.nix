@@ -8,6 +8,8 @@ let
     [ ./autumnal/i3.nix ]
   else
     [ ];
+  neesama =
+    if info.hostname == "neesama" then [ ./autumnal/neesama.nix ] else [ ];
 in {
 
   users.users.autumnal = {
@@ -29,10 +31,17 @@ in {
   age.sshKeyPaths = [ "/home/autumnal/.ssh/id_ed25519" ];
 
   home-manager.users.autumnal = {
-    imports = [ ./autumnal/home.nix ] ++ gnome-config ++ i3-config;
+    imports = [ ./autumnal/home.nix ] ++ gnome-config ++ i3-config ++ neesama;
 
     # TODO somehow move this into users/autumnal/home.nix
     home.file.".local/share/fcitx5/themes/".source =
       "${inputs.my-flakes.packages."${info.arch}".fcitx5-nord}";
+
+    # TODO move into i3 (maybe?)
+    xsession.pointerCursor = {
+      package = inputs.my-flakes.packages."${info.arch}".bibata;
+      name = "Bibata-Original-Classic";
+      size = 12;
+    };
   };
 }

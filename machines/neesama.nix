@@ -13,7 +13,9 @@
     ../modules/software/common.nix
     ../modules/software/dev-common.nix
     ../modules/software/dev-python.nix
+    ../modules/software/dev-rust.nix
     ../modules/software/games.nix
+    ../modules/software/neovim.nix
     ../users/autumnal.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -36,6 +38,13 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [
+    # https://help.ubuntu.com/community/AppleKeyboard
+    # https://wiki.archlinux.org/index.php/Apple_Keyboard
+    "hid_apple.fnmode=1"
+    "hid_apple.iso_layout=0"
+    "hid_apple.swap_opt_cmd=1"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/52ebffd7-c8dd-48f0-a9d1-88c01be0da4f";

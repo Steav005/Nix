@@ -20,14 +20,17 @@
       lib = nixpkgs.lib;
       machines = {
         "neesama" = {
+          hostname = "neesama";
           address = "10.0.0.1";
           arch = "x86_64-linux";
         };
         "last-order" = {
+          hostname = "last-order";
           address = "10.0.0.2";
           arch = "x86_64-linux";
         };
         "index" = {
+          hostname = "index";
           address = "10.3.0.0";
           arch = "aarch64-linux";
         };
