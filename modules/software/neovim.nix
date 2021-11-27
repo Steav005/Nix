@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+  programs.neovim.enable = true;
+  programs.neovim.viAlias = true;
+
+  # Set Nvim as default
+  environment.variables.EDITOR = "nvim";
+
   environment.systemPackages = with pkgs.unstable;
     [
       (neovim.override {

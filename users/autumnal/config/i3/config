@@ -347,3 +347,15 @@ exec_always --no-startup-id betterlockscreen -w
 
 # Create left workspace
 exec --no-startup-id ~/.config/i3/build_workspace_neesama.sh
+
+# Easyeffects
+exec --no-startup-id easyeffects --gapplication-service
+
+# Numlock
+exec --no-startup-id numlockx
+
+# Fcitx5
+exec --no-startup-id fcitx5 -d
+
+# Playerctl Daemon
+exec --no-startup-id playerctld

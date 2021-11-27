@@ -21,7 +21,7 @@
 
     # Themes
     lxappearance
-    papirus-icon-theme
+    unstable.papirus-icon-theme
     nordic
     bibata-cursors
     inputs.my-flakes.packages."${info.arch}".bibata
@@ -36,6 +36,7 @@
     firefox
     unstable.bitwarden
     numlockx # Turn on numlock
+    qdirstat
 
     # Font
     font-manager
@@ -100,7 +101,11 @@
     #media-session.enable = true;
 
     config.pipewire = {
-      "context.properties" = { "default.clock.rate" = 192000; };
+      "context.properties" = {
+        "link.max-buffers" = 16;
+        "log.level" = 2;
+        "default.clock.rate" = 192000;
+      };
     };
   };
 
@@ -162,6 +167,8 @@
     deviceSection = ''
       Option "TearFree" "on"
     '';
+    # Who needs caps anyway
+    xkbOptions = "caps:ctrl_modifier";
   };
 
   # Enable gvfs

@@ -1,17 +1,13 @@
 { config, pkgs, inputs, info, lib, ... }:
 let
-  gnome-config = if config.services.xserver.displayManager.gdm.enable then
-    [ ./autumnal/gnome.nix ]
-  else
-    [ ];
-  i3-config = if config.services.xserver.windowManager.i3.enable then
-    [ ./autumnal/i3.nix ]
-  else
-    [ ];
-  neesama =
-    if info.hostname == "neesama" then [ ./autumnal/neesama.nix ] else [ ];
+  pathIfTrue = import ../tools/pathListIfTrue.nix;
+  conditionalImports =
+    pathIfTrue config.services.xserver.displayManager.gdm.enable
+    ./autumnal/gnome.nix
+    ++ pathIfTrue config.services.xserver.windowManager.i3.enable
+    ./autumnal/i3.nix
+    ++ pathIfTrue (info.hostname == "neesama") ./autumnal/neesama.nix;
 in {
-
   users.users.autumnal = {
     uid = 1000;
     isNormalUser = true;
@@ -31,7 +27,7 @@ in {
   age.sshKeyPaths = [ "/home/autumnal/.ssh/id_ed25519" ];
 
   home-manager.users.autumnal = {
-    imports = [ ./autumnal/home.nix ] ++ gnome-config ++ i3-config ++ neesama;
+    imports = [ ./autumnal/home.nix ] ++ conditionalImports;
 
     # TODO somehow move this into users/autumnal/home.nix
     home.file.".local/share/fcitx5/themes/".source =

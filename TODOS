@@ -1,16 +1,11 @@
 jetbrains plugins?
 Split modules into lite versions
-yomichan?
-CAPSLOCK
 Snapshots
 Syncthing
 i3:
     dunst as external module?
     Move python packages
-    fcitx5
-    workspace delay
-    easyeffects?
-
+    fcitx gtk compatibility
 
 Clean home:
 usePulseAudio ? config.pulseaudio or false

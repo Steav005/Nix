@@ -100,7 +100,7 @@
         };
         iconTheme = {
           name = "Papirus-Dark";
-          package = pkgs.papirus-icon-theme;
+          package = pkgs.unstable.papirus-icon-theme;
         };
         cursorTheme = {
           name = "Bibata-Original-Classic";

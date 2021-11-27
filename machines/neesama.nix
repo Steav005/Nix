@@ -16,6 +16,7 @@
     ../modules/software/dev-rust.nix
     ../modules/software/games.nix
     ../modules/software/neovim.nix
+    ../modules/virtualisation-docker.nix
     ../users/autumnal.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];

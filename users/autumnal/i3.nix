@@ -5,7 +5,7 @@
       force = true;
     };
     "polybar" = {
-      source = ./config/polybar;
+      source = config.lib.file.mkOutOfStoreSymlink ./config/polybar;
       force = true;
     };
     "gtk-3.0/settings.ini" = {

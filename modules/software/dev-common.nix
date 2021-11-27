@@ -5,6 +5,9 @@
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional
 
+    # Run github actions locally
+    unstable.act
+
     (vscode-with-extensions.override {
       vscodeExtensions = (with pkgs.vscode-extensions; [
         ms-python.python
