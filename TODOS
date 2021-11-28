@@ -5,7 +5,3 @@ Syncthing
 i3:
     dunst as external module?
     Move python packages
-    fcitx gtk compatibility
-
-Clean home:
-usePulseAudio ? config.pulseaudio or false

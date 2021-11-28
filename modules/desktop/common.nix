@@ -58,7 +58,7 @@
     unstable.rocketchat-desktop
 
     # Multimedia
-    mpv
+    unstable.mpv
     syncplay
     spotify
     strawberry

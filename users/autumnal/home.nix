@@ -1,8 +1,7 @@
-{ config, ... }: {
-  home.file.".face" = {
-    source = ./profilepicture;
-    force = true;
-  };
+{ config, ... }:
+let configDir = "${config.home.homeDirectory}/Nix/users/autumnal/config/";
+in {
+  home.file.".face".source = ./profilepicture;
 
   programs.git = {
     enable = true;
@@ -12,20 +11,12 @@
   };
 
   xdg.configFile = {
-    "alacritty" = {
-      source = ./config/alacritty;
-      force = true;
-    };
+    "alacritty".source = ./config/alacritty;
 
-    "starship.toml" = {
-      source = ./config/starship.toml;
-      force = true;
-    };
+    "starship.toml".source = ./config/starship.toml;
 
-    "easyeffects/output" = {
-      source = ./config/easyeffects/output;
-      force = true;
-    };
+    "easyeffects/output".source =
+      config.lib.file.mkOutOfStoreSymlink "${configDir}/easyeffects/output";
 
     "fcitx5/config" = {
       source = ./config/fcitx5/config;
@@ -40,31 +31,14 @@
       force = true;
     };
 
-    "cmus/autosave" = {
-      source = ./config/cmus/autosave;
-      force = true;
-    };
-    "cmus/cmus-notify" = {
-      source = ./config/cmus/cmus-notify;
-      force = true;
-    };
-    "cmus/merge_status_script.sh" = {
-      source = ./config/cmus/merge_status_script.sh;
-      force = true;
-    };
-    "cmus/notify.cfg" = {
-      source = ./config/cmus/notify.cfg;
-      force = true;
-    };
+    "cmus/autosave".source = ./config/cmus/autosave;
+    "cmus/cmus-notify".source = ./config/cmus/cmus-notify;
+    "cmus/merge_status_script.sh".source = ./config/cmus/merge_status_script.sh;
+    "cmus/notify.cfg".source = ./config/cmus/notify.cfg;
 
-    "dunst/dunstrc" = {
-      source = ./config/dunst/dunstrc;
-      force = true;
-    };
+    "dunst/dunstrc".source = ./config/dunst/dunstrc;
 
-    "gtk-3.0/bookmarks" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./config/gtk-3.0/bookmarks;
-      force = true;
-    };
+    "gtk-3.0/bookmarks".source =
+      config.lib.file.mkOutOfStoreSymlink "${configDir}/gtk-3.0/bookmarks";
   };
 }

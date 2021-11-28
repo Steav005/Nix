@@ -61,7 +61,7 @@ in {
       find = "fd";
       vim = "nvim";
       cat = "bat --paging=never -p";
-      rebuild = "sudo nixos-rebuild switch --flake ~/Documents/Nix/";
+      rebuild = "sudo nixos-rebuild switch --flake ~/Nix/";
       update-background =
         "betterlockscreen -u ~/Pictures/Wallpaper/venti.png --display 1 -u ~/Pictures/Wallpaper/ganyu.png";
     };
