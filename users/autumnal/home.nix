@@ -31,7 +31,6 @@ in {
       force = true;
     };
 
-    "cmus/autosave".source = ./config/cmus/autosave;
     "cmus/cmus-notify".source = ./config/cmus/cmus-notify;
     "cmus/merge_status_script.sh".source = ./config/cmus/merge_status_script.sh;
     "cmus/notify.cfg".source = ./config/cmus/notify.cfg;

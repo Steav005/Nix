@@ -58,7 +58,8 @@
     unstable.rocketchat-desktop
 
     # Multimedia
-    unstable.mpv
+    ffmpeg
+    (unstable.mpv-with-scripts.override { scripts = [ mpvScripts.mpris ]; })
     syncplay
     spotify
     strawberry
@@ -68,6 +69,11 @@
     pulseaudio # For pactl
     unstable.easyeffects
     unstable.helvum
+    
+    # Cmus
+    unstable.cmus
+    cmusfm
+    (perl.withPackages(ps: [ ps.HTMLParser ]))
   ];
 
   # Required by i.e. easyeffects
