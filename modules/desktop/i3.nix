@@ -154,6 +154,8 @@
       pantheon.elementary-sound-theme
       pantheon.elementary-wallpapers
 
+      polkit_gnome
+
       # Dunst alternative (Ill use dunst afterall)
       # inputs.wired-notify.packages.x86_64-linux.wired
       # notify-desktop
@@ -174,6 +176,9 @@
       unstable.betterlockscreen
       feh
     ];
+
+  
+  security.polkit.enable = true;
 
   # Redshift
   services.redshift.enable = true;

@@ -24,12 +24,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelPackages = pkgs.unstable.linuxPackages_xanmod;
+  #boot.kernelPackages = pkgs.unstable.linuxPackages_xanmod;
+  boot.kernelPackages = pkgs.unstable.linuxPackages_zen;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  #hardware.nvidia.package =
+  #  pkgs.unstable.linuxKernel.packages.linux_xanmod.nvidia_x11_beta;
   hardware.nvidia.package =
-    pkgs.unstable.linuxKernel.packages.linux_xanmod.nvidia_x11_beta;
+    pkgs.unstable.linuxKernel.packages.linux_zen.nvidia_x11_beta;
   services.xserver.videoDrivers = [ "nvidia" ];
 
   networking.hostName = "neesama";
@@ -45,6 +48,26 @@
     "hid_apple.fnmode=1"
     "hid_apple.iso_layout=0"
     "hid_apple.swap_opt_cmd=1"
+  ];
+
+  # Pipewire sometimes doesn't work with usb audio devices
+  # Increase Headroom
+  services.pipewire.media-session.config.alsa-monitor.rules = [
+    {
+      "actions"."update-props" = {
+        "api.acp.auto-port" = false;
+        "api.acp.auto-profile" = false;
+        "api.alsa.use-acp" = true;
+      };
+      "matches" = [ { "device-name" = "~alsa_card.*"; } ];
+    }
+    {
+      "actions"."update-props" = {
+        "node.pause-on-idle" = false;
+        "api.alsa.headroom" = 64;
+      };
+      "matches" = [ { "node.name" = "~alsa_input.*"; } { "node.name" = "~alsa_output.*"; } ];
+    }
   ];
 
   fileSystems."/" = {
@@ -75,7 +98,7 @@
       "noauto"
       "_netdev"
       "x-systemd.automount"
-      "x-systemd.idle-timeout=60"
+      #"x-systemd.idle-timeout=60"
       "x-systemd.device-timeout=4s"
       "x-systemd.mount-timeout=4s"
     ];
@@ -88,7 +111,7 @@
       "noauto"
       "_netdev"
       "x-systemd.automount"
-      "x-systemd.idle-timeout=60"
+      #"x-systemd.idle-timeout=60"
       "x-systemd.device-timeout=4s"
       "x-systemd.mount-timeout=4s"
     ];

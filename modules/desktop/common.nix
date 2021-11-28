@@ -5,14 +5,17 @@
     unstable.alacritty
 
     # Filemanager
-    xfce.thunar
+    unstable.xfce.thunar
     xfce.thunar-archive-plugin
     xfce.thunar-volman
     (xfce.thunar.override {
       thunarPlugins = [ xfce.thunar-archive-plugin xfce.thunar-volman ];
     })
+    xfce.xfconf
+    xfce.exo
     gvfs
 
+    gnome.nautilus
     ranger
     nnn
 
@@ -78,6 +81,9 @@
 
   # Required by i.e. easyeffects
   programs.dconf.enable = true;
+
+  # Thumbnail support for thunar
+  services.tumbler.enable = true;
 
   # Set default terminal env
   environment.sessionVariables.TERMINAL = [ "alacritty" ];
