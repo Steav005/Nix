@@ -1,12 +1,10 @@
 { config, pkgs, inputs, info, lib, ... }:
 let
-  pathIfTrue = import ../tools/pathListIfTrue.nix;
+  xserver = config.services.xserver;
   conditionalImports =
-    pathIfTrue config.services.xserver.displayManager.gdm.enable
-    ./autumnal/gnome.nix
-    ++ pathIfTrue config.services.xserver.windowManager.i3.enable
-    ./autumnal/i3.nix
-    ++ pathIfTrue (info.hostname == "neesama") ./autumnal/neesama.nix;
+    lib.optional xserver.displayManager.gdm.enable ./autumnal/gnome.nix
+    ++ lib.optional xserver.windowManager.i3.enable ./autumnal/i3.nix
+    ++ lib.optional (info.hostname == "neesama") ./autumnal/neesama.nix;
 in {
   users.users.autumnal = {
     uid = 1000;

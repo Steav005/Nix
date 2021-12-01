@@ -72,11 +72,11 @@
     pulseaudio # For pactl
     unstable.easyeffects
     unstable.helvum
-    
+
     # Cmus
     unstable.cmus
     cmusfm
-    (perl.withPackages(ps: [ ps.HTMLParser ]))
+    (perl.withPackages (ps: [ ps.HTMLParser ]))
   ];
 
   # Required by i.e. easyeffects
@@ -84,6 +84,10 @@
 
   # Thumbnail support for thunar
   services.tumbler.enable = true;
+
+  # https://opentabletdriver.net/Wiki/Install/Linux
+  hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.daemon.enable = true;
 
   # Set default terminal env
   environment.sessionVariables.TERMINAL = [ "alacritty" ];

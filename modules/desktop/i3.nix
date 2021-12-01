@@ -177,7 +177,6 @@
       feh
     ];
 
-  
   security.polkit.enable = true;
 
   # Redshift

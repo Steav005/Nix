@@ -28,7 +28,10 @@
       buildInputs = [ inputs.my-flakes.packages."${info.arch}".libusb ];
     });
   };
+  services.xserver.modules = [ pkgs.xlibs.xf86inputjoystick ];
+  hardware.xpadneo.enable = true;
 
   # Steam
   programs.steam.enable = true;
+  hardware.steam-hardware.enable = true;
 }

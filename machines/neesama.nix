@@ -59,14 +59,17 @@
         "api.acp.auto-profile" = false;
         "api.alsa.use-acp" = true;
       };
-      "matches" = [ { "device-name" = "~alsa_card.*"; } ];
+      "matches" = [{ "device-name" = "~alsa_card.*"; }];
     }
     {
       "actions"."update-props" = {
         "node.pause-on-idle" = false;
         "api.alsa.headroom" = 64;
       };
-      "matches" = [ { "node.name" = "~alsa_input.*"; } { "node.name" = "~alsa_output.*"; } ];
+      "matches" = [
+        { "node.name" = "~alsa_input.*"; }
+        { "node.name" = "~alsa_output.*"; }
+      ];
     }
   ];
 
