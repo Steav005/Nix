@@ -118,9 +118,13 @@
 
     config.pipewire = {
       "context.properties" = {
-        "link.max-buffers" = 16;
+        #"link.max-buffers" = 16;
         "log.level" = 2;
         "default.clock.rate" = 192000;
+        "default.clock.allowed-rates" = [ 44100 48000 192000 ];
+        "default.clock.quantum" = 512;
+        "default.clock.min-quantum" = 512;
+        "default.clock.max-quantum" = 2048;
       };
     };
   };
@@ -158,7 +162,7 @@
 
   # Fallback Fonts
   fonts.fontconfig.defaultFonts = {
-    monospace = [ "FiraCode Nerd Font" "Siji" "Symbola" "Sarasa Mono J" ];
+    monospace = [ "FiraCode Nerd Font" "Sarasa Mono J" "Siji" "Symbola" ];
     #   monospace = [ "DejaVu Sans Mono" "IPAGothic" ];
     #   sansSerif = [ "DejaVu Sans" "IPAPGothic" ];
     #   serif = [ "DejaVu Serif" "IPAPMincho" ];

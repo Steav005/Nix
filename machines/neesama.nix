@@ -64,7 +64,8 @@
     {
       "actions"."update-props" = {
         "node.pause-on-idle" = false;
-        "api.alsa.headroom" = 64;
+        "api.alsa.period-size" = 256;
+        "api.alsa.headroom" = 1024;
       };
       "matches" = [
         { "node.name" = "~alsa_input.*"; }
@@ -93,32 +94,32 @@
     fsType = "btrfs";
   };
 
-  fileSystems."/net/index" = {
-    device = "index:/media";
-    fsType = "nfs";
-    noCheck = true;
-    options = [
-      "noauto"
-      "_netdev"
-      "x-systemd.automount"
-      #"x-systemd.idle-timeout=60"
-      "x-systemd.device-timeout=4s"
-      "x-systemd.mount-timeout=4s"
-    ];
-  };
+  #fileSystems."/net/index" = {
+  #  device = "index:/media";
+  #  fsType = "nfs";
+  #  noCheck = true;
+  #  options = [
+  #    "noauto"
+  #    "_netdev"
+  #    "x-systemd.automount"
+  #    #"x-systemd.idle-timeout=60"
+  #    "x-systemd.device-timeout=4s"
+  #    "x-systemd.mount-timeout=4s"
+  #  ];
+  #};
 
-  fileSystems."/net/tenshi" = {
-    device = "tenshi:/";
-    fsType = "nfs";
-    options = [
-      "noauto"
-      "_netdev"
-      "x-systemd.automount"
-      #"x-systemd.idle-timeout=60"
-      "x-systemd.device-timeout=4s"
-      "x-systemd.mount-timeout=4s"
-    ];
-  };
+  #fileSystems."/net/tenshi" = {
+  #  device = "tenshi:/";
+  #  fsType = "nfs";
+  #  options = [
+  #    "noauto"
+  #    "_netdev"
+  #    "x-systemd.automount"
+  #    #"x-systemd.idle-timeout=60"
+  #    "x-systemd.device-timeout=4s"
+  #    "x-systemd.mount-timeout=4s"
+  #  ];
+  #};
 
   swapDevices = [ ];
 

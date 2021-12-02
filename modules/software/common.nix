@@ -22,7 +22,6 @@
     lz4
     pigz
     pixz
-    s-tar
     unzip
     xz
     zip

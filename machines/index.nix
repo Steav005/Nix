@@ -3,7 +3,9 @@
     ../common.nix
     ../modules/fish.nix
     ../modules/nix-flakes.nix
-    #../modules/software/common.nix
+    ../modules/adguard.nix
+    ../modules/software/common.nix
+    ../modules/software/dev-common-minimal.nix
     #../modules/software/neovim.nix
     ../users/autumnal.nix
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -34,6 +36,12 @@
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
       options = [ "noatime" ];
+    };
+    "/boot/firmware" = {
+      device = "/dev/disk/by-label/FIRMWARE";
+      fsType = "vfat";
+      noCheck = true;
+      options = [ "nofail" "noauto" ];
     };
   };
 
