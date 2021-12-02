@@ -32,17 +32,17 @@
   hardware.nvidia.package =
     pkgs.unstable.linuxKernel.packages.linux_zen.nvidia_x11_beta;
   hardware.nvidia.modesetting.enable = true;
-  #hardware.nvidia.nvidiaPersistenced = true;
+  hardware.nvidia.nvidiaPersistenced = true;
   services.xserver = {
-    #exportConfiguration = true;
-    #videoDrivers = [ "modeset" "nvidia" ];
+    exportConfiguration = true;
+    videoDrivers = [ "nvidia" ];
     dpi = 160;
   };
-  #hardware.nvidia.prime = {
-  #  sync.enable = true;
-  #  intelBusId = "PCI:0:2:0";
-  #  nvidiaBusId = "PCI:1:0:0";
-  #};
+  hardware.nvidia.prime = {
+    offload.enable = true;
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
 
   networking.hostName = "last-order"; # Define your hostname.
 
