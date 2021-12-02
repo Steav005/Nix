@@ -87,19 +87,6 @@
     ];
   };
 
-  fileSystems."/net/tenshi" = {
-    device = "tenshi:/";
-    fsType = "nfs";
-    options = [
-      "noauto"
-      "_netdev"
-      "x-systemd.automount"
-      "x-systemd.idle-timeout=60"
-      "x-systemd.device-timeout=4s"
-      "x-systemd.mount-timeout=4s"
-    ];
-  };
-
   swapDevices =
     [{ device = "/dev/disk/by-uuid/0cd9369b-0299-4272-ae5c-e61d78ca5164"; }];
 
