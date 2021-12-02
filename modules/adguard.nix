@@ -1,1 +1,6 @@
-{ pkgs, ... }: { services.adguardhome.enable = true; }
+{ pkgs, ... }: {
+  services.adguardhome = {
+    enable = true;
+    openFirewall = true;
+  };
+}

@@ -31,11 +31,11 @@
         };
         "index" = {
           hostname = "index";
-          address = "10.3.0.0";
+          address = "10.4.0.0";
           arch = "aarch64-linux";
         };
         #"tenshi" = {
-        #    address = "10.4.0.0";
+        #    address = "10.3.0.0";
         #    arch = "x86_64-linux";
         #};
       };

@@ -22,7 +22,9 @@
   # enable zerotier virtual switch
   services.zerotierone = {
     enable = true;
-    joinNetworks = [ "565799d8f6299e0c" ];
+    joinNetworks = [
+      "565799d8f6299e0c" # Network for my devices
+    ];
   };
 
   networking.extraHosts = ''
