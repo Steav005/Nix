@@ -35,6 +35,7 @@
     xorg.xinit
     # Replaced with: programs.dconf.enable = true;
     #gnome.dconf # Required by i.e. easyeffects
+    gnome.gnome-screenshot
     brave
     firefox
     unstable.bitwarden

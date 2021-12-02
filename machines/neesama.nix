@@ -95,7 +95,7 @@
   };
 
   fileSystems."/net/index" = {
-    device = "index:/media";
+    device = "index:/export/media";
     fsType = "nfs";
     noCheck = true;
     options = [

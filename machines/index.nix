@@ -33,7 +33,6 @@
 
   networking.firewall.allowedTCPPorts = [
     53 # adguardhome dns
-    3000 # Adguardhome admin
     139 # Samba
     445 # Samba
     2049 # NFS Server
@@ -101,8 +100,8 @@
   services.nfs.server.enable = true;
   services.nfs.server.exports = ''
     /export/media 10.0.0.0/13(rw,no_all_squash)
-    /export/anime 192.168.194.0/24(ro,all_squash,subtree_check)
-    /export/movies 192.168.194.0/24(ro,all_squash,subtree_check)
+    /export/anime 192.168.194.0/24(ro,all_squash,no_subtree_check)
+    /export/movies 192.168.194.0/24(ro,all_squash,no_subtree_check)
   '';
 
   services.samba = {
