@@ -12,5 +12,7 @@
           pygobject3
         ];
       system-python = python3.withPackages system-python-packages;
-    in [ system-python ];
+    in [ 
+      system-python 
+    ];
 }

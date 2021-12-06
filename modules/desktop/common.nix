@@ -163,7 +163,7 @@
 
   # Fallback Fonts
   fonts.fontconfig.defaultFonts = {
-    monospace = [ "FiraCode Nerd Font" "Sarasa Mono J" "Siji" "Symbola" ];
+    monospace = [ "FiraCode Nerd Font Mono" "Siji" "Sarasa Mono J" "Symbola" ];
     #   monospace = [ "DejaVu Sans Mono" "IPAGothic" ];
     #   sansSerif = [ "DejaVu Sans" "IPAPGothic" ];
     #   serif = [ "DejaVu Serif" "IPAPMincho" ];

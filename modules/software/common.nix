@@ -15,6 +15,7 @@
     skim
     ripgrep
     du-dust
+    hdparm
 
     # archivers & compression algos
     bzip2

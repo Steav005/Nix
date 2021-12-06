@@ -5,3 +5,4 @@ Syncthing
 i3:
     dunst as external module?
     Move python packages
+    Change cursor for empty desktop

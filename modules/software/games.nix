@@ -4,6 +4,7 @@
     xow # XBox Wirless dongle support
 
     lutris
+    steam-run-native
 
     (retroarch.override {
       cores = [

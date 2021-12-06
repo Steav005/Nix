@@ -21,6 +21,8 @@
 
   environment.systemPackages = with pkgs; [ libraspberrypi ];
 
+  services.netdata.enable = true;
+
   networking = {
     hostName = "index";
     interfaces.eth0.ipv4.addresses = [{
@@ -28,7 +30,10 @@
       prefixLength = 24;
     }];
     defaultGateway = "192.168.178.1";
-    nameservers = [ "1.1.1.1" ];
+    nameservers = [ 
+      "127.0.0.1" 
+    ];
+    enableIPv6 = false;
   };
 
   networking.firewall.allowedTCPPorts = [
@@ -36,6 +41,7 @@
     139 # Samba
     445 # Samba
     2049 # NFS Server
+    3000 # adguardhome admin
     6767 # Bazarr
     7878 # Radarr
     8080 # Scrunity
@@ -43,6 +49,7 @@
     9000 # Portainer
     9091 # Transmission
     9117 # Jackett
+    19999 # Netdata
     32400 # Plex
   ];
 
@@ -80,6 +87,13 @@
       options = [ "noatime" ];
     };
   };
+
+  #Disable Spindow: -S 0
+  #Disable Power Managment: -B 255
+  powerManagement.powerUpCommands = ''
+    ${pkgs.hdparm}/sbin/hdparm -S 0 /dev/sdb
+    ${pkgs.hdparm}/sbin/hdparm -B 255 /dev/sdb
+  '';
 
   # Mount for nfs export
   fileSystems = {

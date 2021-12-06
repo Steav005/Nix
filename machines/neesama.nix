@@ -7,6 +7,7 @@
   imports = [
     ../common.nix
     #../modules/desktop/gnome.nix
+    #../modules/desktop/leftwm.nix
     ../modules/desktop/i3.nix
     ../modules/fish.nix
     ../modules/nix-flakes.nix

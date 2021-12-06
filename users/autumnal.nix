@@ -4,6 +4,7 @@ let
   conditionalImports =
     lib.optional xserver.displayManager.gdm.enable ./autumnal/gnome.nix
     ++ lib.optional xserver.windowManager.i3.enable ./autumnal/i3.nix
+    ++ lib.optional xserver.windowManager.leftwm.enable ./autumnal/leftwm.nix
     ++ lib.optional (info.hostname == "neesama") ./autumnal/neesama.nix;
 in {
   users.users.autumnal = {

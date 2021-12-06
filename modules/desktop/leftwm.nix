@@ -2,23 +2,6 @@
 
   imports = [ ./common.nix ];
 
-  #  nixpkgs.overlays = [
-  #    (final: previous: {
-  #      picom = previous.picom.overrideAttrs (
-  #        oldAttrs: rec {
-  #          version = "next-ibhagwan";
-  #          src = previous.fetchFromGitHub {
-  #            "owner"= "ibhagwan";
-  #            "repo"= "picom";
-  #            "rev"= "60eb00ce1b52aee46d343481d0530d5013ab850b";
-  #            "sha256"= "1m17znhl42sa6ry31yiy05j5ql6razajzd6s3k2wz4c63rc2fd1w";
-  #            "fetchSubmodules"= true;
-  #          };
-  #        }
-  #      );
-  #    })
-  #  ];
-
   # Picom
   services.picom = {
     #    package = pkgs.nur.repos.reedrw.picom-next-ibhagwan;
@@ -32,7 +15,7 @@
     shadowOffsets = [ (-5) (-5) ];
     shadowOpacity = 0.6;
     shadowExclude = [
-      "class_g ?= 'i3-frame'"
+      #"class_g ?= 'i3-frame'"
       "class_g ?= 'Polybar'"
       "_GTK_FRAME_EXTENTS@:c"
       "_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
@@ -90,7 +73,7 @@
 
   services.xserver = {
     displayManager = {
-      defaultSession = "none+i3";
+      defaultSession = "none+leftwm";
       lightdm.enable = true;
       lightdm.greeters.gtk = {
         enable = true;
@@ -114,19 +97,7 @@
       };
     };
 
-    windowManager.i3 = {
-      package = pkgs.i3-gaps;
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu # application launcher most people use
-        i3status # gives you the default i3 status bar
-        i3lock # default i3 screen locker
-        i3blocks # if you are planning on using i3blocks over i3status
-      ];
-      #extraSessionCommands = ''
-      #  ${pkgs.autorandr}/bin/autorandr --change --skip-options gamma,crtc,rotate,reflect,rate
-      #'';
-    };
+    windowManager.leftwm.enable = true;
 
     screenSection = ''
       Option         "nvidiaXineramaInfoOrder" "DFP-5"
@@ -161,9 +132,7 @@
       # notify-desktop
       dunst
 
-      tabbed
-
-      # i3 polybar
+      # leftwm polybar
       polybar
       calc
       pywal
