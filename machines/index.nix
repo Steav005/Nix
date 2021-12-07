@@ -41,6 +41,7 @@
     139 # Samba
     445 # Samba
     2049 # NFS Server
+    2342 # Grafana
     3000 # adguardhome admin
     6767 # Bazarr
     7878 # Radarr
@@ -63,6 +64,59 @@
   services.zerotierone.joinNetworks = [
     "12ac4a1e711ec1f6" # Weebwork
   ];
+
+  services.grafana = {
+    enable = true;
+    domain = "localhost";
+    port = 2342;
+    addr = "10.4.0.0";
+  };
+
+  services.prometheus = {
+    enable = true;
+    port = 9001;
+    listenAddress = "127.0.0.1";
+    exporters = {
+      node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        port = 9002;
+        listenAddress = "127.0.0.1";
+      };
+    };
+    scrapeConfigs = [
+      {
+        job_name = "index";
+        static_configs = [{
+          targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+        }];
+      }
+      {
+        job_name = "cadvisor";
+        static_configs = [
+          { targets = [ "localhost:${toString config.services.cadvisor.port}" ]; }
+        ];
+      }
+      {
+        job_name = "adguard";
+        static_configs = [
+          { targets = [ "localhost:9617" ]; }
+        ];
+      }
+      {
+        job_name = "transmission";
+        static_configs = [
+          { targets = [ "localhost:19091" ]; }
+        ];
+      }
+    ];
+  };
+
+  services.cadvisor = {
+    enable = true;
+    port = 9980;
+    listenAddress = "127.0.0.1";
+  };
 
   # Limit Bandwidth for weebwork network
   networking.firewall = {

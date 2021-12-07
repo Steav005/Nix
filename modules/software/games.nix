@@ -12,6 +12,9 @@
         unstable.libretro.dolphin
         libretro.mupen64plus
         libretro.parallel-n64
+        libretro.gambatte
+        libretro.citra
+        libretro.melonds
       ];
     })
 
