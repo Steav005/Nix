@@ -23,7 +23,7 @@ in {
   };
 
   # Age ssh encryption location
-  age.sshKeyPaths = [ "/home/autumnal/.ssh/id_ed25519" ];
+  age.identityPaths = [ "/home/autumnal/.ssh/id_ed25519" ];
 
   home-manager.users.autumnal = {
     imports = [ ./autumnal/home.nix ] ++ conditionalImports;
