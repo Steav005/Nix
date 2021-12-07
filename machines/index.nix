@@ -30,9 +30,7 @@
       prefixLength = 24;
     }];
     defaultGateway = "192.168.178.1";
-    nameservers = [ 
-      "127.0.0.1" 
-    ];
+    nameservers = [ "127.0.0.1" ];
     enableIPv6 = false;
   };
 
@@ -88,26 +86,26 @@
       {
         job_name = "index";
         static_configs = [{
-          targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+          targets = [
+            "127.0.0.1:${
+              toString config.services.prometheus.exporters.node.port
+            }"
+          ];
         }];
       }
       {
         job_name = "cadvisor";
-        static_configs = [
-          { targets = [ "localhost:${toString config.services.cadvisor.port}" ]; }
-        ];
+        static_configs = [{
+          targets = [ "localhost:${toString config.services.cadvisor.port}" ];
+        }];
       }
       {
         job_name = "adguard";
-        static_configs = [
-          { targets = [ "localhost:9617" ]; }
-        ];
+        static_configs = [{ targets = [ "localhost:9617" ]; }];
       }
       {
         job_name = "transmission";
-        static_configs = [
-          { targets = [ "localhost:19091" ]; }
-        ];
+        static_configs = [{ targets = [ "localhost:19091" ]; }];
       }
     ];
   };
