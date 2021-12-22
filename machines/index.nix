@@ -161,6 +161,10 @@
       device = "/media/torrent_storage/movies";
       options = [ "bind" ];
     };
+    "/export/series" = {
+      device = "/media/torrent_storage/series";
+      options = [ "bind" ];
+    };
   };
 
   services.nfs.server.enable = true;
@@ -168,6 +172,7 @@
     /export/media 10.0.0.0/13(rw,no_all_squash)
     /export/anime 192.168.194.0/24(ro,all_squash,no_subtree_check)
     /export/movies 192.168.194.0/24(ro,all_squash,no_subtree_check)
+    /export/series 192.168.194.0/24(ro,all_squash,no_subtree_check)
   '';
 
   services.samba = {
@@ -189,6 +194,13 @@
         browseable = "yes";
         comment = "Movie Share";
         path = "/media/torrent_storage/movies";
+        "guest ok" = "yes";
+        "read only" = "yes";
+      };
+      series = {
+        browseable = "yes";
+        comment = "Series Share";
+        path = "/media/torrent_storage/series";
         "guest ok" = "yes";
         "read only" = "yes";
       };

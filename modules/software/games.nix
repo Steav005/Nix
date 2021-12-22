@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     xow # XBox Wirless dongle support
 
-    lutris
+    unstable.lutris
     steam-run-native
 
     (retroarch.override {
