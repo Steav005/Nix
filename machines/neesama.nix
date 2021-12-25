@@ -53,27 +53,27 @@
 
   # Pipewire sometimes doesn't work with usb audio devices
   # Increase Headroom
-  services.pipewire.media-session.config.alsa-monitor.rules = [
-    {
-      "actions"."update-props" = {
-        "api.acp.auto-port" = false;
-        "api.acp.auto-profile" = false;
-        "api.alsa.use-acp" = true;
-      };
-      "matches" = [{ "device-name" = "~alsa_card.*"; }];
-    }
-    {
-      "actions"."update-props" = {
-        "node.pause-on-idle" = false;
-        "api.alsa.period-size" = 256;
-        "api.alsa.headroom" = 1024;
-      };
-      "matches" = [
-        { "node.name" = "~alsa_input.*"; }
-        { "node.name" = "~alsa_output.*"; }
-      ];
-    }
-  ];
+  #services.pipewire.media-session.config.alsa-monitor.rules = [
+  #  {
+  #    "actions"."update-props" = {
+  #      "api.acp.auto-port" = false;
+  #      "api.acp.auto-profile" = false;
+  #      "api.alsa.use-acp" = true;
+  #    };
+  #    "matches" = [{ "device-name" = "~alsa_card.*"; }];
+  #  }
+  #  {
+  #    "actions"."update-props" = {
+  #      "node.pause-on-idle" = false;
+  #      "api.alsa.period-size" = 256;
+  #      "api.alsa.headroom" = 1024;
+  #    };
+  #    "matches" = [
+  #      { "node.name" = "~alsa_input.*"; }
+  #      { "node.name" = "~alsa_output.*"; }
+  #    ];
+  #  }
+  #];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/52ebffd7-c8dd-48f0-a9d1-88c01be0da4f";
