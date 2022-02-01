@@ -120,11 +120,16 @@
   networking.firewall = {
     extraPackages = with pkgs; [ iproute ];
     extraCommands = ''
-      # Limit WeebWork upload to 24mbits with 1024kbit bursts. Drop packages with more than 800ms latency
+      # Ugly 10 second delay, but we need to wait for zerotier to provide ztbtovjx4h first.
+      sleep 10
+      # Limit WeebWork upload to 24mbits with 8192kbit bursts. Drop packages with more than 800ms latency
       # https://netbeez.net/blog/how-to-use-the-linux-traffic-control/
-      tc qdisc add dev ztbtovjx4h root tbf rate 24mbit burst 1024kbit latency 800ms
+      tc qdisc replace dev ztbtovjx4h root tbf rate 24mbit burst 8192kbit latency 800ms
+      # Use replace instead of add. This way id works whether its been added already or not
     '';
   };
+  # Guarantee start of zerotier before starting firewall
+  systemd.services.firewall.requires = [ "zerotier.services" ];
 
   # File systems configuration for using the installer's partition layout
   fileSystems = {
