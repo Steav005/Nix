@@ -10,7 +10,8 @@ in {
   users.users.autumnal = {
     uid = 1000;
     isNormalUser = true;
-    extraGroups = [ "wheel" "disk" "audio" "video" "networkmanager" "docker" ];
+    extraGroups =
+      [ "wheel" "disk" "input" "audio" "video" "networkmanager" "docker" ];
     shell = pkgs.fish;
     home = "/home/autumnal";
     description = "Sven Friedrich";

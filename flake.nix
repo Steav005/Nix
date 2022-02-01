@@ -52,6 +52,10 @@
                     inherit system;
                     config = super.config;
                   };
+                  stable = import "${nixpkgs-stable}" {
+                    inherit system;
+                    config = super.config;
+                  };
                 })
                 nur.overlay
               ];

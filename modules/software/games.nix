@@ -2,6 +2,7 @@
 
   environment.systemPackages = with pkgs; [
     xow # XBox Wirless dongle support
+    xboxdrv
 
     unstable.lutris
     steam-run-native
@@ -33,9 +34,8 @@
     });
   };
   services.xserver.modules = [ pkgs.xlibs.xf86inputjoystick ];
-  hardware.xpadneo.enable = true;
 
   # Steam
   programs.steam.enable = true;
-  hardware.steam-hardware.enable = true;
+  #hardware.steam-hardware.enable = true;
 }

@@ -2,8 +2,8 @@
 
   imports = [
     ./common.nix
-    #./screen-clz.nix
-    ./screen-uslar.nix
+    ./screen-clz.nix
+    #./screen-uslar.nix
   ];
 
   #  nixpkgs.overlays = [
