@@ -117,6 +117,7 @@
   };
 
   # Limit Bandwidth for weebwork network
+  # TODO fails right now
   networking.firewall = {
     extraPackages = with pkgs; [ iproute ];
     extraCommands = ''
@@ -129,7 +130,7 @@
     '';
   };
   # Guarantee start of zerotier before starting firewall
-  systemd.services.firewall.requires = [ "zerotier.services" ];
+  systemd.services.firewall.requires = [ "zerotierone.service" ];
 
   # File systems configuration for using the installer's partition layout
   fileSystems = {
