@@ -1,12 +1,9 @@
 { config, lib, pkgs, modulesPath, inputs, ... }: {
   imports = [
     ../common.nix
-    ../modules/fish.nix
     ../modules/nix-flakes.nix
     ../modules/adguard.nix
     ../modules/software/common.nix
-    ../modules/software/dev-common-minimal.nix
-    #../modules/software/neovim.nix
     ../modules/virtualisation-docker.nix
     ../users/autumnal.nix
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -82,55 +79,22 @@
         listenAddress = "127.0.0.1";
       };
     };
-    scrapeConfigs = [
-      {
-        job_name = "index";
-        static_configs = [{
-          targets = [
-            "127.0.0.1:${
-              toString config.services.prometheus.exporters.node.port
-            }"
-          ];
-        }];
-      }
-      {
-        job_name = "cadvisor";
-        static_configs = [{
-          targets = [ "localhost:${toString config.services.cadvisor.port}" ];
-        }];
-      }
-      {
-        job_name = "adguard";
-        static_configs = [{ targets = [ "localhost:9617" ]; }];
-      }
-      {
-        job_name = "transmission";
-        static_configs = [{ targets = [ "localhost:19091" ]; }];
-      }
-    ];
-  };
-
-  services.cadvisor = {
-    enable = true;
-    port = 9980;
-    listenAddress = "127.0.0.1";
+    scrapeConfigs = [{
+      job_name = "transmission";
+      static_configs = [{ targets = [ "localhost:19091" ]; }];
+    }];
   };
 
   # Limit Bandwidth for weebwork network
-  # TODO fails right now
-  networking.firewall = {
-    extraPackages = with pkgs; [ iproute ];
-    extraCommands = ''
-      # Ugly 10 second delay, but we need to wait for zerotier to provide ztbtovjx4h first.
-      sleep 10
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
       # Limit WeebWork upload to 24mbits with 8192kbit bursts. Drop packages with more than 800ms latency
       # https://netbeez.net/blog/how-to-use-the-linux-traffic-control/
-      tc qdisc replace dev ztbtovjx4h root tbf rate 24mbit burst 8192kbit latency 800ms
       # Use replace instead of add. This way id works whether its been added already or not
-    '';
+      "*/5 * * * *   root   tc qdisc replace dev ztbtovjx4h root tbf rate 24mbit burst 8192kbit latency 800ms"
+    ];
   };
-  # Guarantee start of zerotier before starting firewall
-  systemd.services.firewall.requires = [ "zerotierone.service" ];
 
   # File systems configuration for using the installer's partition layout
   fileSystems = {

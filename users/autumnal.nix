@@ -1,12 +1,4 @@
-{ config, pkgs, inputs, info, lib, ... }:
-let
-  xserver = config.services.xserver;
-  conditionalImports =
-    lib.optional xserver.displayManager.gdm.enable ./autumnal/gnome.nix
-    ++ lib.optional xserver.windowManager.i3.enable ./autumnal/i3.nix
-    ++ lib.optional xserver.windowManager.leftwm.enable ./autumnal/leftwm.nix
-    ++ lib.optional (info.hostname == "neesama") ./autumnal/neesama.nix;
-in {
+{ config, pkgs, inputs, info, lib, ... }: {
   users.users.autumnal = {
     uid = 1000;
     isNormalUser = true;
@@ -24,21 +16,8 @@ in {
     ];
   };
 
-  # Age ssh encryption location
-  age.identityPaths = [ "/home/autumnal/.ssh/id_ed25519" ];
-
-  home-manager.users.autumnal = {
-    imports = [ ./autumnal/home.nix ] ++ conditionalImports;
-
-    # TODO somehow move this into users/autumnal/home.nix
-    home.file.".local/share/fcitx5/themes/".source =
-      "${inputs.my-flakes.packages."${info.arch}".fcitx5-nord}";
-
-    # TODO move into i3 (maybe?)
-    xsession.pointerCursor = {
-      package = inputs.my-flakes.packages."${info.arch}".bibata;
-      name = "Bibata-Original-Classic";
-      size = 12;
-    };
+  # TODO use my home config (but only the shell part)
+  home-manager.users.autumnal = { pkgs, ... }: {
+    imports = [ "${inputs.my-home}/modules/shell" ];
   };
 }

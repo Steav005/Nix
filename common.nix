@@ -1,4 +1,4 @@
-{ lib, pkgs, agenix, info, ... }:
+{ lib, pkgs, info, ... }:
 
 {
   boot.cleanTmpDir = true;
@@ -43,8 +43,7 @@
   };
 
   # enable openssh
-  environment.systemPackages =
-    [ pkgs.openssh agenix.defaultPackage."${info.arch}" ];
+  environment.systemPackages = [ pkgs.openssh ];
   services.openssh = {
     enable = true;
     passwordAuthentication = false;

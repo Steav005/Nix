@@ -3,45 +3,33 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-21.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    my-flakes.url = "github:steav005/flakes";
+    my-home = {
+      url = "github:steav005/home-config";
+      flake = false;
+    };
     home-manager = {
-      url = "github:nix-community/home-manager/release-21.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     deploy-rs.url = "github:serokell/deploy-rs";
-    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.url = "github:ryantm/agenix";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs-stable";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-unstable, nur, my-flakes
-    , deploy-rs, home-manager, agenix, ... }@inputs:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, nur, deploy-rs
+    , home-manager, my-home, ... }@inputs:
     let
-      lib = nixpkgs.lib;
+      lib = nixpkgs-stable.lib;
       machines = {
-        "neesama" = {
-          hostname = "neesama";
-          address = "10.0.0.1";
-          arch = "x86_64-linux";
-        };
-        "last-order" = {
-          hostname = "last-order";
-          address = "10.0.0.2";
-          arch = "x86_64-linux";
-        };
         "index" = {
           hostname = "index";
-          address = "10.4.0.0";
+          address = "10.4.0.15";
           arch = "aarch64-linux";
         };
-        #"tenshi" = {
-        #    address = "10.3.0.0";
-        #    arch = "x86_64-linux";
-        #};
       };
     in {
       nixosConfigurations = lib.mapAttrs (hostname: info:
-        nixpkgs-stable.lib.nixosSystem rec {
+        lib.nixosSystem rec {
           system = info.arch;
 
           modules = [
@@ -68,15 +56,12 @@
             }
             { networking.hostName = hostname; }
             (./machines + "/${hostname}.nix")
-            (agenix.nixosModules.age)
           ];
           specialArgs = {
             inherit inputs;
             inherit nur;
             inherit info;
-            inherit nixpkgs;
             inherit home-manager;
-            inherit agenix;
           };
 
         }) machines;
